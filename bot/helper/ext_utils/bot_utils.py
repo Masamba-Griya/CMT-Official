@@ -172,6 +172,7 @@ def get_readable_message():
     msg += f"\n<b>• Free Disk</b>: {get_readable_file_size(disk_usage(config_dict['DOWNLOAD_DIR']).free)}"
     msg += f"\n<b>• Total downloading speed</b>: {get_readable_file_size(dl_speed)}/s"
     msg += f"\n<b>• Total uploading speed</b>: {get_readable_file_size(up_speed)}/s"
+    msg += f"\n<b>• CPU</b>: {cpuUsage()}%
     return msg, button
 
 def extra_btns(buttons):
