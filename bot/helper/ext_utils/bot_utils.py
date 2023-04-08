@@ -168,6 +168,7 @@ def get_readable_message():
         buttons.ibutton(f"{PAGE_NO}/{PAGES} ({tasks})", "status ref")
         buttons.ibutton("Next", "status nex")
         button = buttons.build_menu(3)
+    msg += f"\n<b>Kunjungi Website Kami</b>: <a href='https://www.comelmuewa84.eu.org'>Klik Disini</a> </b>\n"
     msg += f"<b>🆃🄸🅼🅴</b>: {get_readable_time(time() - botStartTime)} | <b>🅳🄸🆂🅺</b>: {get_readable_file_size(disk_usage(config_dict['DOWNLOAD_DIR']).free)}"
     msg += f"\n<b>🆃🄳🅻</b>: {get_readable_file_size(dl_speed)}/s | <b>🆃🅄🅻</b>: {get_readable_file_size(up_speed)}/s"
     msg += f"\n<b>🅲🄿🆄:</b> {cpu_percent()}% | <b>🆁🄰🅼:</b> {virtual_memory().percent}%"
