@@ -24,17 +24,17 @@ PAGE_NO = 1
 
 
 class MirrorStatus:
-    STATUS_UPLOADING = "Uploading"
-    STATUS_DOWNLOADING = "Downloading"
-    STATUS_CLONING = "Cloning"
-    STATUS_QUEUEDL = "DL waiting"
-    STATUS_QUEUEUP = "UL waiting"
-    STATUS_PAUSED = "Pause"
-    STATUS_ARCHIVING = "Archiving"
-    STATUS_EXTRACTING = "Extracting"
-    STATUS_SPLITTING = "Splitting"
-    STATUS_CHECKING = "CheckUp"
-    STATUS_SEEDING = "Seeding"
+    STATUS_UPLOADING = "🆄🄿🅻🄾🄰🅳"
+    STATUS_DOWNLOADING = "🄳🄾🆆🄽🅻🄾🄰🅳"
+    STATUS_CLONING = "🅲🅻🄾🅽🅴"
+    STATUS_QUEUEDL = "🅳🅻 🅆🄰🄸🅃"
+    STATUS_QUEUEUP = "🅄🄻 🆆🄰🅸🆃"
+    STATUS_PAUSED = "🄿🄰🆄🆂🄴"
+    STATUS_ARCHIVING = "🄰🆁🄲🄷🄸🆅🄴"
+    STATUS_EXTRACTING = "🅴🆇🆃🅁🄰🄲🆃"
+    STATUS_SPLITTING = "🅂🄿🄻🅸🅃"
+    STATUS_CHECKING = "🄲🄷🄴🅲🄺🆄🄿"
+    STATUS_SEEDING = "🆂🅴🄴🄳"
 
 
 class setInterval:
@@ -113,29 +113,32 @@ def get_readable_message():
         globals()['STATUS_START'] -= STATUS_LIMIT
         globals()['PAGE_NO'] -= 1
     for download in list(download_dict.values())[STATUS_START:STATUS_LIMIT+STATUS_START]:
-        msg += f"<b><i>{escape(f'{download.name()}')}</i></b>\n\n"
-        msg += f"<b>┌ {download.status()} with {download.engine}</b>"
+        msg += f"{escape(str(download.name()))}\n\n"
+        msg += f"<b> {download.status()}</b>\n"
         if download.status() not in [MirrorStatus.STATUS_SPLITTING, MirrorStatus.STATUS_SEEDING]:
-            msg += f"\n<b>├ <a href='https://github.com/5hojib/Luna-Portal'>{get_progress_bar_string(download.progress())}</a></b> {download.progress()}"
-            msg += f"\n<b>├ Processed</b>: {download.processed_bytes()} of {download.size()}"
-            msg += f"\n<b>├ Speed</b>: {download.speed()}"
-            msg += f"\n<b>├ Estimated</b>: {download.eta()}"
+            msg += f"\n<b>[{get_progress_bar_string(download.progress())}]» </b> {download.progress()}"
+            msg += f"\n<b> Processed</b>: {download.processed_bytes()} of {download.size()}"
+            msg += f"\n<b> Speed</b>: {download.speed()}"
+            msg += f"\n<b> Estimated</b>: {download.eta()}"
             if hasattr(download, 'seeders_num'):
                 try:
-                    msg += f"\n<b>├ Seeders</b>: {download.seeders_num()} | <b>Leechers</b>: {download.leechers_num()}"
+                    msg += f"\n<b> Seeders</b>: {download.seeders_num()} | <b>Leechers</b>: {download.leechers_num()}"
                 except:
                     pass
         elif download.status() == MirrorStatus.STATUS_SEEDING:
-            msg += f"\n<b>├ Size</b>: {download.size()}"
-            msg += f"\n<b>├ Speed</b>: {download.upload_speed()}"
-            msg += f"\n<b>├ Uploaded</b>: {download.uploaded_bytes()}"
-            msg += f"\n<b>├ Ratio</b>: {download.ratio()}"
-            msg += f"\n<b>├ Time</b>: {download.seeding_time()}"
+            msg += f"\n<b> Size</b>: {download.size()}"
+            msg += f"\n<b> Speed</b>: {download.upload_speed()}"
+            msg += f"\n<b> Uploaded</b>: {download.uploaded_bytes()}"
+            msg += f"\n<b> Ratio</b>: {download.ratio()}"
+            msg += f"\n<b> Time</b>: {download.seeding_time()}"
         else:
-            msg += f"\n<b>├ Size</b>: {download.size()}"
-        msg += f"\n<b>├ Source</b>: {download.extra_details['source']}"
-        msg += f"\n<b>├ Elapsed</b>: {get_readable_time(time() - download.extra_details['startTime'])}"
-        msg += f"\n<b>└ Stop</b>: <code>/{BotCommands.CancelMirror} {download.gid()}</code>\n\n"
+            msg += f"\n<b> Size</b>: {download.size()}"
+        msg += f"\n<b> Source</b>: {download.extra_details['source']}"
+        msg += f"\n<b> Elapsed</b>: {get_readable_time(time() - download.extra_details['startTime'])}"
+        msg += f"\n<b> Upload</b>: {download.extra_details['mode']}"
+        msg += f"\n<b> Stop</b>: <code>/{BotCommands.CancelMirror} {download.gid()}</code>\n\n"
+        msg += f"\n<b>▬▬▬▬▬▬▬▬▬▬▬▬▬</b>"
+        msg += "\n\n"
     if len(msg) == 0:
         return None, None
     dl_speed = 0
@@ -165,10 +168,10 @@ def get_readable_message():
         buttons.ibutton(f"{PAGE_NO}/{PAGES} ({tasks})", "status ref")
         buttons.ibutton("Next", "status nex")
         button = buttons.build_menu(3)
-    msg += f"<b>• Bot Uptime</b>: {get_readable_time(time() - botStartTime)}"
-    msg += f"\n<b>• Free Disk</b>: {get_readable_file_size(disk_usage(config_dict['DOWNLOAD_DIR']).free)}"
-    msg += f"\n<b>• Total downloading speed</b>: {get_readable_file_size(dl_speed)}/s"
-    msg += f"\n<b>• Total uploading speed</b>: {get_readable_file_size(up_speed)}/s"
+    msg += f"\n<b>Kunjungi Website Kami: <a href='https://www.comelmuewa84.eu.org'>Klik Disini</a> </b>\n"
+    msg += f"\n<b>🅲🄿🆄:</b> {cpu_percent()}% | <b>🆁🄰🅼:</b> {virtual_memory().percent}%"
+    msg += f"\n<b>🆃🄸🅼🅴</b>: {get_readable_time(time() - botStartTime)} | <b>🅳🄸🆂🅺</b>: {get_readable_file_size(disk_usage(DOWNLOAD_DIR).free)}"  
+    msg += f"\n<b>🆃🄳🅻</b>: {get_readable_file_size(dl_speed)}/s | <b>🆃🅄🅻</b>: {get_readable_file_size(up_speed)}/s"
     return msg, button
 
 def extra_btns(buttons):
