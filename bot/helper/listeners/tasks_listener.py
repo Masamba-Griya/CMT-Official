@@ -429,7 +429,7 @@ class MirrorLeechListener:
                 if link:
                     if not config_dict['DISABLE_DRIVE_LINK']:
                         link = await sync_to_async(short_url, link)
-                        buttons.ubutton("Drive Link", link)
+                        buttons.ubutton("Link Cloud", link)
                 else:
                     msg += f'\n\nPath: <code>{rclonePath}</code>'
                 if rclonePath and (RCLONE_SERVE_URL := config_dict['RCLONE_SERVE_URL']):
@@ -468,7 +468,7 @@ class MirrorLeechListener:
                 if self.logMessage:
                     if link and config_dict['DISABLE_DRIVE_LINK']:
                         link = await sync_to_async(short_url, link)
-                        buttons.ubutton("Drive Link", link, 'header')
+                        buttons.ubutton("Cloud Link", link, 'header')
                     await sendMessage(self.logMessage, msg, buttons.build_menu(2))
             else:
                 msg += f'\n\nPath: <code>{rclonePath}</code>'
