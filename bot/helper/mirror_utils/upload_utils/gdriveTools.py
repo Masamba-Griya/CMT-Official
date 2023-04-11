@@ -588,7 +588,7 @@ class GoogleDriveHelper:
                     if not config_dict['DISABLE_DRIVE_LINK']:
                         furl = short_url(
                             f"https://drive.google.com/drive/folders/{file.get('id')}")
-                        msg += f"<b><a href={furl}>Link Cloud</a></b>"
+                        msg += f"<b><a href={furl}>Drive Link</a></b>"
                     if index_url:
                         if isRecur:
                             url_path = "/".join([rquote(n, safe='')
@@ -615,7 +615,7 @@ class GoogleDriveHelper:
                     if not config_dict['DISABLE_DRIVE_LINK']:
                         furl = short_url(
                             f"https://drive.google.com/uc?id={file.get('id')}&export=download")
-                        msg += f"<b><a href={furl}>Link Cloud</a></b>"
+                        msg += f"<b><a href={furl}>Drive Link</a></b>"
                     if index_url:
                         if isRecur:
                             url_path = "/".join(rquote(n, safe='')
@@ -642,14 +642,14 @@ class GoogleDriveHelper:
         if not telegraph_content:
             return "", None
 
-        path = [async_to_sync(telegraph.create_page, title='Pea Masamba Drive Search',
+        path = [async_to_sync(telegraph.create_page, title='Jmdkh-mltb Drive Search',
                 content=content)["path"] for content in telegraph_content]
         if len(path) > 1:
             async_to_sync(telegraph.edit_telegraph, path, telegraph_content)
 
         msg = f"<b>Found {contents_count} result for <i>{fileName}</i></b>"
         buttons = ButtonMaker()
-        buttons.ubutton("👁‍🗨 VIEW", f"https://telegra.ph/{path[0]}", 'header')
+        buttons.ubutton("🔎 VIEW", f"https://telegra.ph/{path[0]}", 'header')
         buttons = extra_btns(buttons)
         return msg, buttons.build_menu(2)
 
