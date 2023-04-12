@@ -102,9 +102,9 @@ def get_progress_bar_string(pct):
         p_str += incomplete_char
     p_str += '○' * (16 - len(p_str))
     return f"{p_str}"
-
+msg += f"\n<b>Kunjungi Website Kami</b>: <a href='https://www.comelmuewa84.eu.org'>Klik Disini</a> </b>\n\n"
 def get_readable_message():
-    msg = "<b>🄿🄴🄰 🄼🄰🅂🄰🄼🄱🄰</b>\n\n"
+    msg = "<b><a href='https://www.comelmuewa84.eu.org'>🄿🄴🄰 🄼🄰🅂🄰🄼🄱🄰</a> </b>\n\n"
     button = None
     STATUS_LIMIT = config_dict['STATUS_LIMIT']
     tasks = len(download_dict)
