@@ -104,7 +104,7 @@ def get_progress_bar_string(pct):
     return f"{p_str}"
 
 def get_readable_message():
-    msg += f"<b>🆃🄰🅂🅺🅂:</b> {tasks}"
+    msg = "<b><a href='https://subscene.com/u/1271292'>𝑷𝒆𝒂 𝑴𝒂𝒔𝒂𝒎𝒃𝒂</a> </b>\n\n"
     button = None
     STATUS_LIMIT = config_dict['STATUS_LIMIT']
     tasks = len(download_dict)
@@ -163,6 +163,11 @@ def get_readable_message():
                     up_speed += float(spd.split('K')[0]) * 1024
                 elif 'M' in spd:
                     up_speed += float(spd.split('M')[0]) * 1048576
+    if config_dict['TOTAL_TASKS_LIMIT']:
+            TASKS_COUNT = f"<b>Task Limit: </b>{config_dict['TOTAL_TASKS_LIMIT']} | <b>Run:</b> {len(download_dict)} | <b>Free:</b> {config_dict['TOTAL_TASKS_LIMIT'] - len(download_dict)}\n"
+        else:
+            TASKS_COUNT = f"<b>Tasks Running:</b> {len(download_dict)}\n"
+            
     if tasks > STATUS_LIMIT:
         buttons = ButtonMaker()
         buttons.ibutton("Prev", "status pre")
@@ -170,6 +175,7 @@ def get_readable_message():
         buttons.ibutton("Next", "status nex")
         button = buttons.build_menu(3)
     msg += f"\n<b>Kunjungi Website Kami</b>: <a href='https://www.comelmuewa84.eu.org'>Klik Disini</a> </b>\n\n"
+    msg += f"{TASKS_COUNT}"
     msg += f"\n<b>🅲🄿🆄:</b> {cpu_percent()}% | <b>🆁🄰🅼:</b> {virtual_memory().percent}%"
     msg += f"\n<b>🆃🄸🅼🅴</b>: {get_readable_time(time() - botStartTime)}"
     msg += f"\n<b>🅳🄸🆂🅺</b>: {get_readable_file_size(disk_usage(config_dict['DOWNLOAD_DIR']).free)}"
