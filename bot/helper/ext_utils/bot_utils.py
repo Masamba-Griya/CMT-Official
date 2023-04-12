@@ -162,21 +162,15 @@ def get_readable_message():
                 if 'K' in spd:
                     up_speed += float(spd.split('K')[0]) * 1024
                 elif 'M' in spd:
-                    up_speed += float(spd.split('M')[0]) * 1048576
-    if config_dict['TOTAL_TASKS_LIMIT']:
-            TASKS_COUNT = f"<b>Task Limit: </b>{config_dict['TOTAL_TASKS_LIMIT']} | <b>Run:</b> {len(download_dict)} | <b>Free:</b> {config_dict['TOTAL_TASKS_LIMIT'] - len(download_dict)}\n"
-        else:
-            TASKS_COUNT = f"<b>Tasks Running:</b> {len(download_dict)}\n"
-            
+                    up_speed += float(spd.split('M')[0]) * 1048576               
     if tasks > STATUS_LIMIT:
         buttons = ButtonMaker()
         buttons.ibutton("Prev", "status pre")
         buttons.ibutton(f"{PAGE_NO}/{PAGES} ({tasks})", "status ref")
         buttons.ibutton("Next", "status nex")
         button = buttons.build_menu(3)
-    msg += f"\n<b>Kunjungi Website Kami</b>: <a href='https://www.comelmuewa84.eu.org'>Klik Disini</a> </b>\n\n"
-    msg += f"{TASKS_COUNT}"
-    msg += f"\n<b>🅲🄿🆄:</b> {cpu_percent()}% | <b>🆁🄰🅼:</b> {virtual_memory().percent}%"
+    msg += f"\n<b>𝙺𝚞𝚗𝚓𝚞𝚗𝚐𝚒 𝚆𝚎𝚋𝚜𝚒𝚝𝚎 𝙺𝚊𝚖𝚒</b>: <a href='https://www.comelmuewa84.eu.org'>K̳l̳i̳k̳ D̳i̳s̳i̳n̳i̳</a> </b>\n\n"
+    msg += f"<b>🆃🄰🅂🅺🅂:</b> {tasks} | <b>🅲🄿🆄:</b> {cpu_percent()}% | <b>🆁🄰🅼:</b> {virtual_memory().percent}%"
     msg += f"\n<b>🆃🄸🅼🅴</b>: {get_readable_time(time() - botStartTime)}"
     msg += f"\n<b>🅳🄸🆂🅺</b>: {get_readable_file_size(disk_usage(config_dict['DOWNLOAD_DIR']).free)}"
     msg += f"\n<b>🆃🄳🅻</b>: {get_readable_file_size(dl_speed)}/s | <b>🆃🅄🅻</b>: {get_readable_file_size(up_speed)}/s"    
