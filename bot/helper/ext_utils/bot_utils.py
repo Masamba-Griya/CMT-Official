@@ -102,7 +102,7 @@ def get_progress_bar_string(pct):
         p_str += incomplete_char
     p_str += '○' * (16 - len(p_str))
     return f"{p_str}"
-msg += f"\n<b>Kunjungi Website Kami</b>: <a href='https://www.comelmuewa84.eu.org'>Klik Disini</a> </b>\n\n"
+
 def get_readable_message():
     msg = "<b><a href='https://www.comelmuewa84.eu.org'>🄿🄴🄰 🄼🄰🅂🄰🄼🄱🄰</a> </b>\n\n"
     button = None
@@ -169,6 +169,7 @@ def get_readable_message():
         buttons.ibutton("Next", "status nex")
         button = buttons.build_menu(3)
     msg += f"\n<b>Kunjungi Website Kami</b>: <a href='https://www.comelmuewa84.eu.org'>Klik Disini</a> </b>\n\n"
+    msg += f"<b>• Tasks</b>: {tasks}"
     msg += f"\n<b>🅲🄿🆄:</b> {cpu_percent()}% | <b>🆁🄰🅼:</b> {virtual_memory().percent}%"
     msg += f"\n<b>🆃🄸🅼🅴</b>: {get_readable_time(time() - botStartTime)}"
     msg += f"\n<b>🅳🄸🆂🅺</b>: {get_readable_file_size(disk_usage(config_dict['DOWNLOAD_DIR']).free)}"
